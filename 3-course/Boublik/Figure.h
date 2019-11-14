@@ -18,6 +18,6 @@ public:
     int getBorderColor() const; // получить цвет
     void setVisible( bool isVisible = true ); // показать/спрятать фигуру
     bool isVisible() const; // признак видимости
-    virtual void calcParams( float&amp; perimeter, float&amp; area ) const;
+    virtual void calcParams( float& perimeter, float& area ) const;
     // вычислить периметр и площадь фигуры
 };

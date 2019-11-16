@@ -3,6 +3,11 @@
 #include<iostream>
 using namespace std;
 
+struct Point
+{
+	int x, y;
+};
+
 class Figure
 {
     int c; // цвет
@@ -12,7 +17,7 @@ protected:
     virtual void draw() const;
 public:
     Figure(int c, int x, int y);
-    ~Figure();
+    virtual ~Figure();
     void move(int dx, int dy); // сместить фигуру на (dx,dy) – только видимую
     void setBorderColor(int c); // установить цвет фигуры – только видимой
     int getBorderColor() const; // получить цвет

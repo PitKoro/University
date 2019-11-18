@@ -1,8 +1,7 @@
+#include<iostream>
 #include "Figure.h"
+using namespace std;
 
-void Figure::draw() const
-{
-}
 
 Figure::Figure(int c, int x, int y)
 {
@@ -23,6 +22,7 @@ void Figure::move(int dx, int dy)
 	{
 		this->x += dx;
 		this->y += dy;
+		draw();
 	}
 }
 
@@ -33,6 +33,11 @@ void Figure::setBorderColor(int c)
 	{
 		this->c = c;
 	}
+	else
+	{
+		cout << "*ERROR*: The figure is invisible\n";
+	}
+
 }
 
 int Figure::getBorderColor() const
@@ -43,6 +48,7 @@ int Figure::getBorderColor() const
 void Figure::setVisible(bool isVisible)
 {
 	this->visible = isVisible;
+	draw();
 }
 
 bool Figure::isVisible() const
@@ -50,6 +56,9 @@ bool Figure::isVisible() const
 	return this->visible;
 }
 
-void Figure::calcParams(float& perimeter, float& area) const
-{
+Point Figure::getCenter() {
+	Point center;
+	center.x = x;
+	center.y = y;
+	return center;
 }

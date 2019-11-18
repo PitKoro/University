@@ -1,10 +1,12 @@
 #pragma once
+
 #include <iostream>
 #include "Figure.h"
+
 using namespace std;
 
 
-class Boublik: public Figure
+class Boublik : public Figure
 {
 public:
 	Boublik(int c, int x, int y, int smallRadius, int bigRadius);
@@ -12,6 +14,8 @@ public:
 
 	virtual void calcParams(float& perimeter, float& area) const; // вычислить периметр и площадь фигуры
 	void setSizes(int smallRadius, int bigRadius); // Изменение размера фигуры
+	int getSmallRadius() const;
+	int getBigRadius() const;
 
 private:
 	int smallRadius; //Радиус внутреннего круга

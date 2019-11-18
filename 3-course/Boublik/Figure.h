@@ -10,19 +10,21 @@ struct Point
 
 class Figure
 {
-    int c; // цвет
-    bool visible;
+private:
+	int c; // цвет
+	bool visible; // Видимость
 protected:
-    int x,y; // базовая точка
-    virtual void draw() const;
+	int x, y; // базовая точка
+	virtual void draw() = 0;
 public:
-    Figure(int c, int x, int y);
-    virtual ~Figure();
-    void move(int dx, int dy); // сместить фигуру на (dx,dy) – только видимую
-    void setBorderColor(int c); // установить цвет фигуры – только видимой
-    int getBorderColor() const; // получить цвет
-    void setVisible( bool isVisible = true ); // показать/спрятать фигуру
-    bool isVisible() const; // признак видимости
-    virtual void calcParams( float& perimeter, float& area ) const; // вычислить периметр и площадь фигуры
-    
+	Figure(int c, int x, int y);
+	virtual ~Figure();
+	void move(int dx, int dy); // сместить фигуру на (dx,dy) – только видимую
+	virtual void setBorderColor(int c); // установить цвет фигуры – только видимой
+	int getBorderColor() const; // получить цвет
+	void setVisible(bool isVisible = true); // показать/спрятать фигуру
+	bool isVisible() const; // признак видимости
+	virtual void calcParams(float& perimeter, float& area) const = 0; // вычислить периметр и площадь фигуры
+	// Получаем центральную точку
+	Point getCenter();
 };

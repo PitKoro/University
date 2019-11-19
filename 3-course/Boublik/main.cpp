@@ -83,5 +83,6 @@ int main() {
 
 	delete boublik;
 	delete filledBoublik;
+	system("pause");
 	return 0;
 }

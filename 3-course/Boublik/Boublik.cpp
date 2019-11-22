@@ -17,7 +17,7 @@ Boublik::~Boublik()
 void Boublik::calcParams(float& perimeter, float& area) const
 {
 	perimeter = 2 * M_PI * this->bigRadius + 2 * M_PI * this->smallRadius;
-	area = M_PI * ((this->bigRadius) ^ 2 - (this->smallRadius) ^ 2);
+	area = M_PI * ((this->bigRadius * this->bigRadius) - (this->smallRadius * this->smallRadius));
 }
 
 void Boublik::setSizes(int smallRadius, int bigRadius)

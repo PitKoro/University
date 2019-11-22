@@ -48,7 +48,6 @@ int Figure::getBorderColor() const
 void Figure::setVisible(bool isVisible)
 {
 	this->visible = isVisible;
-	draw();
 }
 
 bool Figure::isVisible() const

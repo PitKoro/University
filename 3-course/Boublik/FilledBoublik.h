@@ -19,5 +19,3 @@ public:
 protected:
 	virtual void draw();
 };
-
-

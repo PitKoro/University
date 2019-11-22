@@ -23,8 +23,6 @@ void FilledBoublik::setBorderColor(int c)
 	if (c != f)
 	{
 		Boublik::setBorderColor(c);
-		cout << " Border Color " << getBorderColor() << endl;
-		draw();
 	}
 }
 

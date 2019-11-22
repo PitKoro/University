@@ -32,6 +32,7 @@ void Figure::setBorderColor(int c)
 	if (this->visible == true)
 	{
 		this->c = c;
+		draw();
 	}
 	else
 	{

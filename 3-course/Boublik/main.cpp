@@ -53,9 +53,9 @@ int main() {
 	cout << " " << endl;
 	cout << " Change Border Color (filled boublik) " << endl;
 	filledBoublik->setBorderColor(347);
-	//int l = filledBoublik->getBorderColor();
+	int l = filledBoublik->getBorderColor();
 	int p = filledBoublik->getFillColor();
-	//cout << " Border Color " << l << endl;
+	cout << " Border Color " << l << endl;
 	cout << " " << endl;
 	cout << " Moving filled boublik... " << endl;
 	filledBoublik->move(0, 0);

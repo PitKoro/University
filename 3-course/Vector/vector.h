@@ -11,5 +11,12 @@ public:
 	~Vector();
 	void add(int vectorDimension, double* newVector);
 	void print();
+	Vector operator+(Vector obj1);
+	Vector operator-(Vector obj1);
+	Vector& operator=(const Vector& obj1);
+	bool operator==(Vector obj1);
+    bool operator!=(Vector obj1);
+	friend Vector operator+(Vector obj, double num);
+	friend Vector operator-(Vector obj, double num);
 };
 

@@ -149,10 +149,9 @@ Vector& Vector::operator=(const Vector& obj1)
 	{
 		coordinates[i] = obj1.coordinates[i];
 	}
-	if(this == &obj1)
-	{
-		return *this;
-	}
+
+	return *this;
+
 }
 
 bool Vector::operator==(Vector obj1)
@@ -161,15 +160,12 @@ bool Vector::operator==(Vector obj1)
 	{
         for(int i=0; i < vectorDimension; i++)
 		{
-            if(coordinates[i] == obj1.coordinates[i])
-			{
-                return true;
-			}
-			else
+            if(coordinates[i] != obj1.coordinates[i])
 			{
             	return false;
 			}
 		}
+		return true;
 	}
 	else
         return false;
@@ -177,8 +173,9 @@ bool Vector::operator==(Vector obj1)
 
 bool Vector::operator!=(Vector obj1)
 {
-
-    if(vectorDimension == obj1.vectorDimension)
+    return !(*this == obj1);
+    //return !(this->operator==(obj1));//
+    /*if(vectorDimension == obj1.vectorDimension)
 	{
         for(int i=0; i<vectorDimension; i++)
 		{
@@ -195,5 +192,5 @@ bool Vector::operator!=(Vector obj1)
 	else
 	{
         return true;
-	}
+	}*/
 }

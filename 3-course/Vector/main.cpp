@@ -62,7 +62,8 @@ int main()
 			V2.print();
 			cout << endl;
 			cout << "=====================================\n";
-			delete[] v1, v2;
+			delete[] v1;
+			delete[] v2;
 			system("pause");
 			break;
 		}
@@ -177,7 +178,7 @@ int main()
 			cout<<"V1:"<<endl;
 			Vector V3, V4;
 			int t;
-			cout<<"Enter vector nomber to assignment"<<endl;
+			cout<<"Enter vector number to assignment"<<endl;
 			cin>>t;
 			if(t==1)
 				{
@@ -207,7 +208,7 @@ int main()
 		case 7:
 		{
 			system("cls");
-			cout<<"Equality test                      8"<<endl;
+			cout<<"Equality test                      7"<<endl;
 			cout<<"V1:"<<endl;
 			V1.print();
 			cout<<"V2:"<<endl;
@@ -222,7 +223,7 @@ int main()
 		case 8:
 		{
 			system("cls");
-			cout<<"Copy constructor         "<<endl;
+			cout<<"Copy constructor         8"<<endl;
 			Vector V=V1;
 			cout<<"V1:"<<endl;
 			V1.print();
@@ -244,7 +245,7 @@ int main()
 		case 9:
 		{
 			system("cls");
-			cout<<"Print V1 and V2                10"<<endl;
+			cout<<"Print V1 and V2                9"<<endl;
 			cout<<"Vector1: "<<endl;
 			V1.print();
 			cout << "-------------------------------------" << endl;

@@ -5,7 +5,10 @@ private:
 	int vectorDimension; // Размерность вектора
 	double* coordinates; // Указатель на вектор
 public:
-	Vector() {};
+	Vector() {
+		vectorDimension = 0;
+		coordinates = new double[1];
+	};
 	Vector(int vectorDimension);
 	Vector(const Vector& obj); // Конструктор копирования
 	~Vector();

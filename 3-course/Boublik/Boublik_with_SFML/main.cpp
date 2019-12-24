@@ -14,11 +14,11 @@ using namespace sf;
 
 int main() 
 {
-	BorderColor border_color;// Цвет контура (структура)
-	FillColor fill_color;// Цвет заливки фигуры (структура)
+	BorderColor border_color;// Р¦РІРµС‚ РєРѕРЅС‚СѓСЂР° (СЃС‚СЂСѓРєС‚СѓСЂР°)
+	FillColor fill_color;// Р¦РІРµС‚ Р·Р°Р»РёРІРєРё С„РёРіСѓСЂС‹ (СЃС‚СЂСѓРєС‚СѓСЂР°)
 	Point center;
-	/*int R, G, B; // Цвет контура
-	int RED, GREEN, BLUE; // Цвет заливки фигуры*/
+	/*int R, G, B; // Р¦РІРµС‚ РєРѕРЅС‚СѓСЂР°
+	int RED, GREEN, BLUE; // Р¦РІРµС‚ Р·Р°Р»РёРІРєРё С„РёРіСѓСЂС‹*/
 	int smallRadius, bigRadius;
 	border_color.R = 0;  border_color.G = 0;  border_color.B = 0;
 	fill_color.RED = 223; fill_color.GREEN = 0; fill_color.BLUE = 0;
@@ -35,78 +35,78 @@ int main()
 	boublik->setVisible();
 	filledBoublik->setVisible();
 
-	//--------------------------<ГРАФИКА>--------------------------------------------------------------------
-	// Устанавливаем 8-ой уровень сглаживания
+	//--------------------------<Р“Р РђР¤РРљРђ>--------------------------------------------------------------------
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј 8-РѕР№ СѓСЂРѕРІРµРЅСЊ СЃРіР»Р°Р¶РёРІР°РЅРёСЏ
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
 
-	// Объект, который является главным окном приложения
+	// РћР±СЉРµРєС‚, РєРѕС‚РѕСЂС‹Р№ СЏРІР»СЏРµС‚СЃСЏ РіР»Р°РІРЅС‹Рј РѕРєРЅРѕРј РїСЂРёР»РѕР¶РµРЅРёСЏ
 	RenderWindow window(VideoMode(1000,1000), "Boublik with SFML", Style::Default, settings);
 
-	// Главный цикл приложения. Выполняется пока открыто окно
+	// Р“Р»Р°РІРЅС‹Р№ С†РёРєР» РїСЂРёР»РѕР¶РµРЅРёСЏ. Р’С‹РїРѕР»РЅСЏРµС‚СЃСЏ РїРѕРєР° РѕС‚РєСЂС‹С‚Рѕ РѕРєРЅРѕ
 	while (window.isOpen())
 	{
-		// Обрабатываем очередь событий в цикле
+		// РћР±СЂР°Р±Р°С‚С‹РІР°РµРј РѕС‡РµСЂРµРґСЊ СЃРѕР±С‹С‚РёР№ РІ С†РёРєР»Рµ
 		Event event;
 		while (window.pollEvent(event))
 		{
-			// Пользователь нажал на крестик и хочет закрыть окно
+			// РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅР°Р¶Р°Р» РЅР° РєСЂРµСЃС‚РёРє Рё С…РѕС‡РµС‚ Р·Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ
 			if (event.type == Event::Closed)
 			{
-				// Тогда закрываем окно
+				// РўРѕРіРґР° Р·Р°РєСЂС‹РІР°РµРј РѕРєРЅРѕ
 				window.close(); 
 			}
 		}
 
-		window.clear(Color::White); // Устанавливаем цвет фона
+		window.clear(Color::White); // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ С„РѕРЅР°
 		
-		// Задаем текст
-		Font font; // Объявляем шрифт
-		font.loadFromFile("D:\\VS_projects\\SFML_tutorial\\tutorial\\Fonts\\times.ttf"); // Загружаем шрифт из файла
-		Text text; // Объявляем текст
-		text.setFont(font); // Устанавливаем шрифт на текс 
-		text.setString("Boublik:"); // Задаем отображаемую строку
-		text.setCharacterSize(24); // Задаем размер шрифта в пикселях
-		text.setFillColor(Color::Black); // Задаем цвет для текста
-		window.draw(text); // Выводим текст в окно
+		// Р—Р°РґР°РµРј С‚РµРєСЃС‚
+		Font font; // РћР±СЉСЏРІР»СЏРµРј С€СЂРёС„С‚
+		font.loadFromFile("D:\\VS_projects\\SFML_tutorial\\tutorial\\Fonts\\times.ttf"); // Р—Р°РіСЂСѓР¶Р°РµРј С€СЂРёС„С‚ РёР· С„Р°Р№Р»Р°
+		Text text; // РћР±СЉСЏРІР»СЏРµРј С‚РµРєСЃС‚
+		text.setFont(font); // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С€СЂРёС„С‚ РЅР° С‚РµРєСЃ 
+		text.setString("Boublik:"); // Р—Р°РґР°РµРј РѕС‚РѕР±СЂР°Р¶Р°РµРјСѓСЋ СЃС‚СЂРѕРєСѓ
+		text.setCharacterSize(24); // Р—Р°РґР°РµРј СЂР°Р·РјРµСЂ С€СЂРёС„С‚Р° РІ РїРёРєСЃРµР»СЏС…
+		text.setFillColor(Color::Black); // Р—Р°РґР°РµРј С†РІРµС‚ РґР»СЏ С‚РµРєСЃС‚Р°
+		window.draw(text); // Р’С‹РІРѕРґРёРј С‚РµРєСЃС‚ РІ РѕРєРЅРѕ
 
-		// Устанавливаем бублик
+		// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р±СѓР±Р»РёРє
 		CircleShape BIGcircle(60.f);
-		BIGcircle.setOutlineThickness(2.f); // устанавливаем толщину контура круга
-		BIGcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // устанавливаем цвет контура
-		BIGcircle.setPosition(100, 15); // перемещаем круг для корректного отображения в окне
-		window.draw(BIGcircle); // отрисовка круга
+		BIGcircle.setOutlineThickness(2.f); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РѕР»С‰РёРЅСѓ РєРѕРЅС‚СѓСЂР° РєСЂСѓРіР°
+		BIGcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ РєРѕРЅС‚СѓСЂР°
+		BIGcircle.setPosition(100, 15); // РїРµСЂРµРјРµС‰Р°РµРј РєСЂСѓРі РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ РѕРєРЅРµ
+		window.draw(BIGcircle); // РѕС‚СЂРёСЃРѕРІРєР° РєСЂСѓРіР°
 		CircleShape SMALLcircle(20.f);
-		SMALLcircle.setOutlineThickness(2.f); // устанавливаем толщину контура круга
-		SMALLcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // устанавливаем цвет контура
-		SMALLcircle.setPosition(140, 55); // перемещаем круг для корректного отображения в окне
-		window.draw(SMALLcircle); // отрисовка круга
+		SMALLcircle.setOutlineThickness(2.f); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РѕР»С‰РёРЅСѓ РєРѕРЅС‚СѓСЂР° РєСЂСѓРіР°
+		SMALLcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ РєРѕРЅС‚СѓСЂР°
+		SMALLcircle.setPosition(140, 55); // РїРµСЂРµРјРµС‰Р°РµРј РєСЂСѓРі РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ РѕРєРЅРµ
+		window.draw(SMALLcircle); // РѕС‚СЂРёСЃРѕРІРєР° РєСЂСѓРіР°
 
 
 
-		// Устанавливаем закрашенный бублик
-		text.setString("Filled Boublik:"); // Задаем отображаемую строку
-		//text.setCharacterSize(24); // Задаем размер шрифта в пикселях
-		//text.setFillColor(Color::Black); // Задаем цвет для текста
+		// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·Р°РєСЂР°С€РµРЅРЅС‹Р№ Р±СѓР±Р»РёРє
+		text.setString("Filled Boublik:"); // Р—Р°РґР°РµРј РѕС‚РѕР±СЂР°Р¶Р°РµРјСѓСЋ СЃС‚СЂРѕРєСѓ
+		//text.setCharacterSize(24); // Р—Р°РґР°РµРј СЂР°Р·РјРµСЂ С€СЂРёС„С‚Р° РІ РїРёРєСЃРµР»СЏС…
+		//text.setFillColor(Color::Black); // Р—Р°РґР°РµРј С†РІРµС‚ РґР»СЏ С‚РµРєСЃС‚Р°
 		text.setPosition(450, 0);
-		window.draw(text); // Выводим текст в окно
+		window.draw(text); // Р’С‹РІРѕРґРёРј С‚РµРєСЃС‚ РІ РѕРєРЅРѕ
 		CircleShape filledBIGcircle(60.f);
-		filledBIGcircle.setFillColor(Color(fill_color.RED, fill_color.GREEN, fill_color.BLUE)); // закрашиваем наш круг
-		filledBIGcircle.setOutlineThickness(2.f); // устанавливаем толщину контура круга
-		filledBIGcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // устанавливаем цвет контура
-		filledBIGcircle.setPosition(600, 15); // перемещаем круг для корректного отображения в окне
-		window.draw(filledBIGcircle); // отрисовка круга
+		filledBIGcircle.setFillColor(Color(fill_color.RED, fill_color.GREEN, fill_color.BLUE)); // Р·Р°РєСЂР°С€РёРІР°РµРј РЅР°С€ РєСЂСѓРі
+		filledBIGcircle.setOutlineThickness(2.f); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РѕР»С‰РёРЅСѓ РєРѕРЅС‚СѓСЂР° РєСЂСѓРіР°
+		filledBIGcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ РєРѕРЅС‚СѓСЂР°
+		filledBIGcircle.setPosition(600, 15); // РїРµСЂРµРјРµС‰Р°РµРј РєСЂСѓРі РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ РѕРєРЅРµ
+		window.draw(filledBIGcircle); // РѕС‚СЂРёСЃРѕРІРєР° РєСЂСѓРіР°
 		CircleShape filledSMALLcircle(20.f);
-		filledSMALLcircle.setOutlineThickness(2.f); // устанавливаем толщину контура круга
-		filledSMALLcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // устанавливаем цвет контура
-		filledSMALLcircle.setPosition(640, 55); // перемещаем круг для корректного отображения в окне
-		window.draw(filledSMALLcircle); // отрисовка круга
+		filledSMALLcircle.setOutlineThickness(2.f); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РѕР»С‰РёРЅСѓ РєРѕРЅС‚СѓСЂР° РєСЂСѓРіР°
+		filledSMALLcircle.setOutlineColor(Color(border_color.R, border_color.G, border_color.B)); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ РєРѕРЅС‚СѓСЂР°
+		filledSMALLcircle.setPosition(640, 55); // РїРµСЂРµРјРµС‰Р°РµРј РєСЂСѓРі РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ РѕРєРЅРµ
+		window.draw(filledSMALLcircle); // РѕС‚СЂРёСЃРѕРІРєР° РєСЂСѓРіР°
 		
 
 		
 
 
-		window.display(); // Отрисовка окна
+		window.display(); // РћС‚СЂРёСЃРѕРІРєР° РѕРєРЅР°
 	}
 
 

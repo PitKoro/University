@@ -1,8 +1,8 @@
 #pragma once
-double** memoryAllocation(int rows, int lows); // Выделение памяти под  матрицу
-void readMatrixFromFile(double** arr, int rows, int lows); // Чтение матрицы из файла и запись в двумерный динамический массив
-void initialization_of_the_UnitMatrix(double** arr, int rows, int lows); // Инициализация единичной матрицы
-void print(double** arr, int rows, int lows); // Вывод матрицы на экран
-void matrixCombination(double** Matrix_Big, double** Matrix, double** UnitMatrix, int rows, int lows); // Соединяем данную матрицу с единичной
+double** memoryAllocation(int rows, int lows); // Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ  РјР°С‚СЂРёС†Сѓ
+void readMatrixFromFile(double** arr, int rows, int lows); // Р§С‚РµРЅРёРµ РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р° Рё Р·Р°РїРёСЃСЊ РІ РґРІСѓРјРµСЂРЅС‹Р№ РґРёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ
+void initialization_of_the_UnitMatrix(double** arr, int rows, int lows); // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РµРґРёРЅРёС‡РЅРѕР№ РјР°С‚СЂРёС†С‹
+void print(double** arr, int rows, int lows); // Р’С‹РІРѕРґ РјР°С‚СЂРёС†С‹ РЅР° СЌРєСЂР°РЅ
+void matrixCombination(double** Matrix_Big, double** Matrix, double** UnitMatrix, int rows, int lows); // РЎРѕРµРґРёРЅСЏРµРј РґР°РЅРЅСѓСЋ РјР°С‚СЂРёС†Сѓ СЃ РµРґРёРЅРёС‡РЅРѕР№
 
-double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows); // Метод Гаусса
+double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows); // РњРµС‚РѕРґ Р“Р°СѓСЃСЃР°

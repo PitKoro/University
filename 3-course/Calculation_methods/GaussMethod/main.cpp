@@ -5,47 +5,37 @@ using namespace std;
 
 int main()
 {
+	int rows = 3;//СЃС‚СЂРѕРєРё
+	int lows = 3;//СЃС‚РѕР»Р±С†С‹
 	
-	int rows = 3;//строки
-	int lows = 3;//столбцы
+	double** Matrix = memoryAllocation(rows, lows); // Р’С‹РґРµР»СЏРµРј РјРµСЃС‚Рѕ РїРѕРґ РЅР°С‡Р°Р»СЊРЅСѓСЋ РјР°С‚СЂРёС†Сѓ
+	readMatrixFromFile(Matrix,rows,lows ); // Р—Р°РїРёСЃС‹РІР°РµРј РјР°С‚СЂРёС†Сѓ РёР· С„Р°Р№Р»Р° РІ РјР°СЃСЃРёРІ
 	
-	
-	double** Matrix = memoryAllocation(rows, lows); // Выделяем место под начальную матрицу
-	readMatrixFromFile(Matrix,rows,lows ); // Записываем матрицу из файла в массив
-	
-	double** UnitMatrix = memoryAllocation(rows, lows); // Создаем единичную матрицу
-	initialization_of_the_UnitMatrix(UnitMatrix, rows, lows);// Инициализируем единичную матрицу
+	double** UnitMatrix = memoryAllocation(rows, lows); // РЎРѕР·РґР°РµРј РµРґРёРЅРёС‡РЅСѓСЋ РјР°С‚СЂРёС†Сѓ
+	initialization_of_the_UnitMatrix(UnitMatrix, rows, lows);// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РµРґРёРЅРёС‡РЅСѓСЋ РјР°С‚СЂРёС†Сѓ
 
-
-
+	int Big_lows = 2*lows; // РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ Р±РѕР»СЊС€РѕР№ РјР°С‚СЂРёС†Рµ
+	double** Matrix_Big = memoryAllocation(rows, Big_lows); // Р’С‹РґРµР»СЏРµРј РјРµСЃС‚Рѕ РїРѕРґ РјР°С‚СЂРёС†Сѓ Matrix_Big РІ РєРѕС‚РѕСЂСѓСЋ Р·Р°РїРёС€РµРј СЌР»РµРјРµРЅС‚С‹ Matrix  Рё  UnitMatrix
+	matrixCombination(Matrix_Big, Matrix, UnitMatrix, rows, lows);//РЎРѕРµРґРёРЅСЏРµРј РІ РѕРґРЅСѓ РјР°С‚СЂРёС†Сѓ
 	
-	int Big_lows = 2*lows; // Количество столбцов в большой матрице
-	double** Matrix_Big = memoryAllocation(rows, Big_lows); // Выделяем место под матрицу Matrix_Big в которую запишем элементы Matrix  и  UnitMatrix
-	matrixCombination(Matrix_Big, Matrix, UnitMatrix, rows, lows);//Соединяем в одну матрицу
-	
-	
-	print(Matrix, rows,lows); // Выводим начальную матрицу 
-	print(UnitMatrix, rows, lows);//Выводит единичную матрицу
-	print(Matrix_Big, rows, Big_lows);//Выводим большую матрицу на экран
+	print(Matrix, rows,lows); // Р’С‹РІРѕРґРёРј РЅР°С‡Р°Р»СЊРЅСѓСЋ РјР°С‚СЂРёС†Сѓ 
+	print(UnitMatrix, rows, lows);//Р’С‹РІРѕРґРёС‚ РµРґРёРЅРёС‡РЅСѓСЋ РјР°С‚СЂРёС†Сѓ
+	print(Matrix_Big, rows, Big_lows);//Р’С‹РІРѕРґРёРј Р±РѕР»СЊС€СѓСЋ РјР°С‚СЂРёС†Сѓ РЅР° СЌРєСЂР°РЅ
 
-	double** InversMatrix; // Указатель на обратную матрицу, которую мы получим после вызова Gaus_method(...)
-	InversMatrix = Gauss_method(Matrix_Big, Matrix, rows, lows);// Метод Гаусса
+	double** InversMatrix; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ, РєРѕС‚РѕСЂСѓСЋ РјС‹ РїРѕР»СѓС‡РёРј РїРѕСЃР»Рµ РІС‹Р·РѕРІР° Gaus_method(...)
+	InversMatrix = Gauss_method(Matrix_Big, Matrix, rows, lows);// РњРµС‚РѕРґ Р“Р°СѓСЃСЃР°
 
+	print(Matrix_Big, rows, Big_lows);//Р’С‹РІРѕРґРёРј Р±РѕР»СЊС€СѓСЋ РјР°С‚СЂРёС†Сѓ РЅР° СЌРєСЂР°РЅ
+	print(InversMatrix, rows, lows); // Р’С‹РІРѕРґРёРј РѕР±СЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ РЅР° СЌРєСЂР°РЅ
 
-	print(Matrix_Big, rows, Big_lows);//Выводим большую матрицу на экран
-	print(InversMatrix, rows, lows); // Выводим обратную матрицу на экран
-	
-
-	//Удаление массивов
+	//РЈРґР°Р»РµРЅРёРµ РјР°СЃСЃРёРІРѕРІ
 	for (int i = 0; i < rows; i++)
 	{
 		delete[]Matrix[i];
 		delete[]UnitMatrix[i];
 		delete[]Matrix_Big[i];
 		delete[]InversMatrix[i];
-
 	}
-
 	delete[]Matrix;
 	delete[]UnitMatrix;
 	delete[]Matrix_Big;
@@ -53,12 +43,3 @@ int main()
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-

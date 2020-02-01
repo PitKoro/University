@@ -20,10 +20,10 @@ void readMatrixFromFile(double** arr, int rows, int lows)
 	{
 		cout << "*ERROR* FILE NOT OPENED" << endl;
 	}
-	else
+	/*else
 	{
 		cout << "FILE OPENED\n";
-	}
+	}*/
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -106,13 +106,12 @@ double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows)
 			for (int j = 2 * lows - 1; j > -1; j--) //j-номер столбца следующей строки после k
 				Matrix_Big[i][j] = Matrix_Big[i][j] - Matrix_Big[k][j] * K;
 		}
-
 	}
 
 	//Отделяем от общей матрицы
 	double** InversMatrix = memoryAllocation(rows, lows);
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < lows; j++)
-			InversMatrix[i, j] = Matrix_Big[i, j + lows];
+			InversMatrix[i][j] = Matrix_Big[i][j + lows];
 	return InversMatrix;
 }

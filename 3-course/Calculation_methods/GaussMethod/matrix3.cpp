@@ -15,7 +15,7 @@ double** memoryAllocation(int rows, int lows)
 
 void readMatrixFromFile(double** arr, int rows, int lows)
 {
-	ifstream matrix3("C:\\Users\\Пётр\\source\\repos\\Lab1\\matrix3.txt");
+	ifstream matrix3("C:\\Users\\РџС‘С‚СЂ\\source\\repos\\Lab1\\matrix3.txt");
 	if (!matrix3.is_open())
 	{
 		cout << "*ERROR* FILE NOT OPENED" << endl;
@@ -79,37 +79,37 @@ void matrixCombination(double** Matrix_Big, double** Matrix, double** UnitMatrix
 
 double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows)
 {
-	//Прямой ход (Зануление нижнего левого угла)
-	for (int k = 0; k < rows; k++) //k-номер строки
+	//РџСЂСЏРјРѕР№ С…РѕРґ (Р—Р°РЅСѓР»РµРЅРёРµ РЅРёР¶РЅРµРіРѕ Р»РµРІРѕРіРѕ СѓРіР»Р°)
+	for (int k = 0; k < rows; k++) //k-РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё
 	{
-		for (int i = 0; i < 2 * lows; i++) //i-номер столбца
-			Matrix_Big[k][i] = Matrix_Big[k][i] / Matrix[k][k]; //Деление k-строки на первый член !=0 для преобразования его в единицу
-		for (int i = k + 1; i < rows; i++) //i-номер следующей строки после k
+		for (int i = 0; i < 2 * lows; i++) //i-РЅРѕРјРµСЂ СЃС‚РѕР»Р±С†Р°
+			Matrix_Big[k][i] = Matrix_Big[k][i] / Matrix[k][k]; //Р”РµР»РµРЅРёРµ k-СЃС‚СЂРѕРєРё РЅР° РїРµСЂРІС‹Р№ С‡Р»РµРЅ !=0 РґР»СЏ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РµРіРѕ РІ РµРґРёРЅРёС†Сѓ
+		for (int i = k + 1; i < rows; i++) //i-РЅРѕРјРµСЂ СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРё РїРѕСЃР»Рµ k
 		{
-			double K = Matrix_Big[i][k] / Matrix_Big[k][k]; //Коэффициент
-			for (int j = 0; j < 2 * lows; j++) //j-номер столбца следующей строки после k
-				Matrix_Big[i][j] = Matrix_Big[i][j] - Matrix_Big[k][j] * K; //Зануление элементов матрицы ниже первого члена, преобразованного в единицу
+			double K = Matrix_Big[i][k] / Matrix_Big[k][k]; //РљРѕСЌС„С„РёС†РёРµРЅС‚
+			for (int j = 0; j < 2 * lows; j++) //j-РЅРѕРјРµСЂ СЃС‚РѕР»Р±С†Р° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРё РїРѕСЃР»Рµ k
+				Matrix_Big[i][j] = Matrix_Big[i][j] - Matrix_Big[k][j] * K; //Р—Р°РЅСѓР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹ РЅРёР¶Рµ РїРµСЂРІРѕРіРѕ С‡Р»РµРЅР°, РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРіРѕ РІ РµРґРёРЅРёС†Сѓ
 		}
-		for (int i = 0; i < rows; i++) //Обновление, внесение изменений в начальную матрицу
+		for (int i = 0; i < rows; i++) //РћР±РЅРѕРІР»РµРЅРёРµ, РІРЅРµСЃРµРЅРёРµ РёР·РјРµРЅРµРЅРёР№ РІ РЅР°С‡Р°Р»СЊРЅСѓСЋ РјР°С‚СЂРёС†Сѓ
 			for (int j = 0; j < lows; j++)
 				Matrix[i][j] = Matrix_Big[i][j];
 	}
 
-	//Обратный ход (Зануление верхнего правого угла)
-	for (int k = rows - 1; k > -1; k--) //k-номер строки
+	//РћР±СЂР°С‚РЅС‹Р№ С…РѕРґ (Р—Р°РЅСѓР»РµРЅРёРµ РІРµСЂС…РЅРµРіРѕ РїСЂР°РІРѕРіРѕ СѓРіР»Р°)
+	for (int k = rows - 1; k > -1; k--) //k-РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё
 	{
-		for (int i = 2 * lows - 1; i > -1; i--) //i-номер столбца
+		for (int i = 2 * lows - 1; i > -1; i--) //i-РЅРѕРјРµСЂ СЃС‚РѕР»Р±С†Р°
 			Matrix_Big[k][i] = Matrix_Big[k][i] / Matrix[k][k];
-		for (int i = k - 1; i > -1; i--) //i-номер следующей строки после k
+		for (int i = k - 1; i > -1; i--) //i-РЅРѕРјРµСЂ СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРё РїРѕСЃР»Рµ k
 		{
 			double K = Matrix_Big[i][k] / Matrix_Big[k][k];
-			for (int j = 2 * lows - 1; j > -1; j--) //j-номер столбца следующей строки после k
+			for (int j = 2 * lows - 1; j > -1; j--) //j-РЅРѕРјРµСЂ СЃС‚РѕР»Р±С†Р° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРё РїРѕСЃР»Рµ k
 				Matrix_Big[i][j] = Matrix_Big[i][j] - Matrix_Big[k][j] * K;
 		}
 
 	}
 
-	//Отделяем от общей матрицы
+	//РћС‚РґРµР»СЏРµРј РѕС‚ РѕР±С‰РµР№ РјР°С‚СЂРёС†С‹
 	double** InversMatrix = memoryAllocation(rows, lows);
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < lows; j++)

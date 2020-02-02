@@ -23,13 +23,13 @@ int main()
 	print(Matrix, rows,lows); // Выводим начальную матрицу 
 	cout << "Единичная матрица:\n";
 	print(UnitMatrix, rows, lows);//Выводит единичную матрицу
-	cout << "Совмещенная матрица:\n";
+	cout << "Совместная матрица:\n";
 	print(Matrix_Big, rows, Big_lows);//Выводим большую матрицу на экран
 
 	double** InversMatrix; // Указатель на обратную матрицу, которую мы получим после вызова Gaus_method(...)
 	InversMatrix = Gauss_method(Matrix_Big, Matrix, rows, lows);// Метод Гаусса
 
-	cout << "Совмещенная матрица после преобразований:\n";
+	cout << "Совместная матрица после преобразований:\n";
 	print(Matrix_Big, rows, Big_lows);//Выводим большую матрицу на экран
 	cout << "Обратная матрица:\n";
 	print(InversMatrix, rows, lows); // Выводим обратную матрицу на экран

@@ -15,7 +15,7 @@ double** memoryAllocation(int rows, int lows)
 
 void readMatrixFromFile(double** arr, int rows, int lows)
 {
-	ifstream matrix3("C:\\Users\\Пётр\\source\\repos\\Lab1\\matrix3.txt");
+	ifstream matrix3("matrix3.txt");
 	if (!matrix3.is_open())
 	{
 		cout << "*ERROR* FILE NOT OPENED" << endl;

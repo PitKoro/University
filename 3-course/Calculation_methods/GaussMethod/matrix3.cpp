@@ -186,7 +186,7 @@ void processEvent(string msg, double** Matrix_Big,int rows,int columns)
 void writingMatrixToFile(double** UnitToResultMatrix, int rows, int lows)// Записывает Обратную Матрицу в Файл
 {
 	ofstream out; // поток для записи
-	std::string path = "C:\\Users\\Гость1\\Desktop\\DZ1\\inverSSMatrix.txt"; // путь до файла в котором хранится результат работы программы
+	std::string path = "inverSSMatrix.txt"; // путь до файла в котором хранится результат работы программы
 	out.open(path); // окрываем файл для записи
 	if (out.is_open())
 	{

@@ -19,7 +19,7 @@ double** memoryAllocation(int rows, int lows)
 
 void readMatrixFromFile(double** arr, int rows, int lows)
 {
-	std::string path = "C:\\Users\\student\\Documents\\KorolevPetr\\methodCalculation\\lab1(Gauss)\\matrix6.txt";
+	std::string path = "matrix6.txt";
 	ifstream matrix3(path);
 	if (!matrix3.is_open())
 	{

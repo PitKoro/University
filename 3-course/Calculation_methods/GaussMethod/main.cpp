@@ -1,11 +1,13 @@
 #include <iostream>
+#include <locale>
 #include "matrix3.h"
 using namespace std;
 
 
 int main()
 {
-	setlocale(LC_ALL,"RUS");
+	setlocale(LC_ALL, "Russian");
+
 	int rows = 6;//строки
 	int lows = 6;//столбцы
 	bool answer;
@@ -20,13 +22,13 @@ int main()
 	double** Matrix_Big = memoryAllocation(rows, Big_lows); // Выделяем место под матрицу Matrix_Big в которую запишем элементы Matrix  и  UnitMatrix
 	matrixCombination(Matrix_Big, Matrix, UnitToResultMatrix, rows, lows);//Соединяем в одну матрицу
 
-	cout << "Начальная матрица:\n";
+	cout << "Initial Matrix:\n";
 	print(Matrix, rows,lows); // Выводим начальную матрицу
-	cout << "Единичная матрица:\n";
+	cout << "Unit Matrix:\n";
 	print(UnitToResultMatrix, rows, lows);//Выводит единичную матрицу
-	cout << "Общая матрица:\n";
+	cout << "General matrix:\n";
 	print(Matrix_Big, rows, Big_lows);//Выводим большую матрицу на экран
-    cout << "Если вы хотите включить режим демонстрации нажмите 1, иначе 0\n";
+    cout << "If you want to enable the demonstration mode, press 1, otherwise 0\n";
     cin >> answer;
 
     function<void(std::string, double**, int, int)> sp = [](std::string msg, double** Matrix_Big,int rows,int columns){};
@@ -36,15 +38,15 @@ int main()
     }
 	UnitToResultMatrix = Gauss_method(Matrix_Big, Matrix, rows, lows, sp);// Метод Гаусса
 
-	cout << "Общая матрица после преобразований:\n";
+	cout << "General matrix after transformations:\n";
 	print(Matrix_Big, rows, Big_lows);//Выводим большую матрицу на экран
-	cout << "Обратная матрица:\n";
+	cout << "Inverse matrix:\n";
 	print(UnitToResultMatrix, rows, lows); // Выводим обратную матрицу на экран
 
-    cout << "Начальная матрица:\n";
+    cout << "Initial Matrix:\n";
 	print(Matrix, rows,lows); // Выводим начальную матрицу
 
-	cout<<"Проверка: умножаем исходную матрицу на обратную:\n";
+	cout<<"Check: multiply the original matrix by the inverse:\n";
 
 	double** resultMultiplyMatrix; // Создаем  матрицу 
     resultMultiplyMatrix = multiplyMatrix(Matrix, UnitToResultMatrix, rows); // Записываем результат умножения матриц
@@ -62,6 +64,6 @@ int main()
 	delete[]Matrix;
 	delete[]UnitToResultMatrix;
 	delete[]Matrix_Big;
-
+	system("pause");
 	return 0;
 }

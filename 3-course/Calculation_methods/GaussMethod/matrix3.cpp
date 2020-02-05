@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cmath>
 #include<cstdlib>
+#include <iomanip>
 
 #include "matrix3.h"
 using namespace std;
@@ -18,7 +19,7 @@ double** memoryAllocation(int rows, int lows)
 
 void readMatrixFromFile(double** arr, int rows, int lows)
 {
-	std::string path = "matrix6.txt";
+	std::string path = "C:\\Users\\student\\Documents\\KorolevPetr\\methodCalculation\\lab1(Gauss)\\matrix6.txt";
 	ifstream matrix3(path);
 	if (!matrix3.is_open())
 	{
@@ -61,10 +62,18 @@ void print(double** arr, int rows, int lows)
 		{
 		    if(abs(arr[i][j]) < 0.001)
             {
-                cout << "\t" << 0 << " ";
+				cout << "\t";
+				printf("%.2f", 0);
+				//cout  << " ";
             }else
             {
-                cout << "\t" << arr[i][j] << " ";
+				cout << "\t";
+				printf("%.2f", arr[i][j]);
+				if (j == 5)
+				{
+					cout << " |";
+				}
+                
             }
 
 		}
@@ -106,7 +115,7 @@ double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows, 
         }
 
 	   swapRows(Matrix_Big[k],Matrix_Big[pos],2*rows);
-	   stepProcessor("Нашли главный элемент и поменяли его стоку с первой.", Matrix_Big, rows, 2*lows);
+	   stepProcessor("We found the main element and swap from the first.", Matrix_Big, rows, 2*lows);
 
 		for (int i = k + 1; i < rows; i++) //i-номер следующей строки после k
 		{
@@ -114,8 +123,9 @@ double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows, 
 			for (int j = 0; j < 2 * lows; j++) //j-номер столбца следующей строки после k
 			{
 				Matrix_Big[i][j] = Matrix_Big[i][j] - Matrix_Big[k][j] * K; //Зануление элементов матрицы ниже первого члена, преобразованного в единицу
-				stepProcessor("Выполнили преобразование(прямой ход)", Matrix_Big, rows, 2 * lows);
+				
 			}
+			stepProcessor("Converted: Zero (Forward)", Matrix_Big, rows, 2 * lows);
 		}
 	}
 
@@ -125,8 +135,9 @@ double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows, 
 		for (int i = 2 * lows - 1; i > -1; i--) //i-номер столбца
 		{
 			Matrix_Big[k][i] = Matrix_Big[k][i] / Matrix_Big[k][k];
-			stepProcessor("Выполнили преобразование1(обратный ход)", Matrix_Big, rows, 2 * lows);
+			
 		}
+		stepProcessor("Converted: We divide the line into the main element (Reverse)", Matrix_Big, rows, 2 * lows);
 
 		for (int i = k - 1; i > -1; i--) //i-номер следующей строки после k
 		{
@@ -134,8 +145,9 @@ double** Gauss_method(double** Matrix_Big, double** Matrix, int rows, int lows, 
 			for (int j = 2 * lows - 1; j > -1; j--) //j-номер столбца следующей строки после k
 			{
 				Matrix_Big[i][j] = Matrix_Big[i][j] - Matrix_Big[k][j] * K;
-				stepProcessor("Выполнили преобразование2(обратный ход)", Matrix_Big, rows, 2 * lows);
+				
 			}
+			stepProcessor("Converted: Zero (Reverse)", Matrix_Big, rows, 2 * lows);
 				
 		}
 	}
@@ -186,7 +198,7 @@ void processEvent(string msg, double** Matrix_Big,int rows,int columns)
 void writingMatrixToFile(double** UnitToResultMatrix, int rows, int lows)// Записывает Обратную Матрицу в Файл
 {
 	ofstream out; // поток для записи
-	std::string path = "inverSSMatrix.txt"; // путь до файла в котором хранится результат работы программы
+	std::string path = "C:\\Users\\student\\Documents\\KorolevPetr\\methodCalculation\\lab1(Gauss)\\inverSSMatrix.txt"; // путь до файла в котором хранится результат работы программы
 	out.open(path); // окрываем файл для записи
 	if (out.is_open())
 	{

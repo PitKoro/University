@@ -44,27 +44,28 @@ print(n_k)
 
 # Расчитываем теоритические частоты
 ui = []
-for item in k:
-    tmp = (float(item) - sampleMean)/standardDeviation
+tmp = 0
+for i in range(0, len(k)-1):
+    tmp = (float(k[i]) - sampleMean)/standardDeviation
     ui.append(tmp)
 
+
 fi=[] # список ϕ(ui)
-for item in ui:
-    tmp = (1/(sqrt(2*pi)))*(e ** (-(item**2)/2))
+tmp = 0
+for i in range(0, len(k)-1):
+    tmp = (1/(sqrt(2*pi)))*(e ** (-(ui[i]**2)/2))
     fi.append(tmp)
 
+
 theoretical_frequencies = []
-h = 0.2
+tmp = 0
 for item in fi:
     tmp = size*h*item/standardDeviation
     theoretical_frequencies.append(tmp)
 
 # Далее вычисляем Наблюдаемое значение критерия
-index = 0
-K = 0 # Значение Критерия
-for val in n_k:
-    tmp = ((float(val) - float(theoretical_frequencies[index]))**2)/float(theoretical_frequencies[index])
-    K += tmp
-    index += 1
+chiSquared = 0
+for theoretical_frequencies, num  in zip(theoretical_frequencies, n_k):
+    chiSquared += ((num - theoretical_frequencies)**2) / theoretical_frequencies
 
-print(f'Критерий: {K}')
+print(f'Критерий: {chiSquared}')

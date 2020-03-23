@@ -1,5 +1,5 @@
 from functools import reduce # reduce() Применяет указанную функцию к элементам последовательности, сводя её к единственному значению.
-from math import sqrt, pi
+from math import sqrt, pi, e
 from collections import Counter
 
 def readFromFile(filename):
@@ -25,9 +25,14 @@ print(f'(4) 99%-доверительный интервал для мат. ож�
 
 
 # По критерию хи квадрат проверить гипотезу что распределение нормальное
+# https://www.matburo.ru/Examples/Files/ms_pg_3.pdf
 
-k = [2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 5.6] #разбили отрезок на 12 частей
+h = (max(sample) - min(sample))/12 #разбили отрезок на 12 частей, получили шаг 0.264725
 
+
+fi = 0.062
+ni = 11 * 0.2*fi/0.498
+print(ni) 
 # Выдвинем гипотезу H0: распределение генеральной совокупности X подчинено нормальному 
 # закону с параметрами a = 4.004820069204156 и σ = 0.5664344483986975 .
 
@@ -46,3 +51,32 @@ dictDoubles = Counter(sortedSample)
 with open('doublesInput32.txt','w') as out:
     for key,val in dictDoubles.items():
         out.write('{}:{}\n'.format(key,val))
+
+# Расчитываем теоритические частоты
+dictKeys = dictDoubles.keys()
+dictValues = dictDoubles.values()
+
+ui = []
+for key in dictDoubles:
+    tmp = (float(key) - sampleMean)/standardDeviation
+    ui.append(tmp)
+
+fi=[] # список ϕ(ui)
+for item in ui:
+    tmp = (1/(sqrt(2*pi)))*(e ** (-(item**2)/2))
+    fi.append(tmp)
+
+theoretical_frequencies = []
+for item in fi:
+    tmp = size*h*item/standardDeviation
+    theoretical_frequencies.append(tmp)
+
+# Далее вычисляем Наблюдаемое значение критерия
+index = 0
+K = 0 # Значение Критерия
+for val in dictDoubles.values():
+    tmp = ((float(val) - float(theoretical_frequencies[index]))**2)/float(theoretical_frequencies[index])
+    K += tmp
+    index += 1
+
+print(f'Критерий: {K}')

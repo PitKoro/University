@@ -74,6 +74,6 @@ chiSquared = 0
 for theoretical_frequencies, num  in zip(theoretical_frequencies, n_k):
     chiSquared += ((num - theoretical_frequencies)**2) / theoretical_frequencies
 chiSquaredThreshold = 15.5
-print(f'Значение Хи-квадрат Пирсона: {chiSquared}\n'
+print(f'(5) Значение Хи-квадрат Пирсона: {chiSquared} => '
     'Гипотеза принята' if chiSquared < chiSquaredThreshold else 'Гипотеза отклонена'
 )

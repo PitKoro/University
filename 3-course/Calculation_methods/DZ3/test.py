@@ -40,13 +40,25 @@ for item in sample:
             n_k[i-1]+=1
             break
 
-print(n_k)
 
-# Расчитываем теоритические частоты
+
+# Расчитываем теоритические частоты##########################################################################3###
+tmp = 0
+for index in range(0, len(k)-1):
+    tmp += k[index] * n_k[index] 
+sampleMean = tmp/size
+
+tmp = 0
+for index in range(0, len(k)-1):
+    tmp += n_k[index]*(sampleMean - k[index])**2
+sampleVariance = tmp/(size-1)
+print(sampleMean)
+print(sampleVariance)
+
 ui = []
 tmp = 0
 for i in range(0, len(k)-1):
-    tmp = (float(k[i]) - sampleMean)/standardDeviation
+    tmp = (k[i] - sampleMean)/standardDeviation
     ui.append(tmp)
 
 

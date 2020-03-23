@@ -29,5 +29,8 @@ k = [2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 5.6] #разбили 
 
 # Выдвинем гипотезу H0: распределение генеральной совокупности X подчинено нормальному 
 # закону с параметрами a = 4.004820069204156 и σ = 0.5664344483986975 .
-
-for N in 
+sortedSample = sorted(sample)
+sorted_f = open('sortedInput32.txt', 'w')
+for item in sortedSample:
+    sorted_f.write("%s\n" % item)
+sorted_f.close()

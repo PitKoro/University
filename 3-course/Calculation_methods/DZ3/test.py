@@ -12,6 +12,7 @@ sample = readFromFile('input32.txt')
 print(f'min: {min(sample)}\nmax: {max(sample)}')
 size = len(sample) # (1) Объем выборки
 print(f'(1) Объем выборки: {size}')
+
 sampleMean = sum(sample)/size # (2) Выборочное среднее
 print(f'(2) Выборочное среднее: {sampleMean}')
 
@@ -48,13 +49,6 @@ for index in range(0, len(k)-1):
     tmp += k[index] * n_k[index] 
 sampleMean = tmp/size
 
-tmp = 0
-for index in range(0, len(k)-1):
-    tmp += n_k[index]*(sampleMean - k[index])**2
-sampleVariance = tmp/(size-1)
-print(sampleMean)
-print(sampleVariance)
-
 ui = []
 tmp = 0
 for i in range(0, len(k)-1):
@@ -79,5 +73,7 @@ for item in fi:
 chiSquared = 0
 for theoretical_frequencies, num  in zip(theoretical_frequencies, n_k):
     chiSquared += ((num - theoretical_frequencies)**2) / theoretical_frequencies
-
-print(f'Критерий: {chiSquared}')
+chiSquaredThreshold = 15.5
+print(f'Значение Хи-квадрат Пирсона: {chiSquared}\n'
+    'Гипотеза принята' if chiSquared < chiSquaredThreshold else 'Гипотеза отклонена'
+)

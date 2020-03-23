@@ -8,21 +8,21 @@ def readFromFile(filename):
     return [float(e) for e in a]
 
 sample = readFromFile('input32.txt')
+#print(f'min: {min(sample)}\nmax: {max(sample)}')
 size = len(sample) # (1) Объем выборки
-print('(1) Объем выборки: ' + str(size))
+print(f'(1) Объем выборки: {size}')
 sampleMean = sum(sample)/size # (2) Выборочное среднее
-print('(2) Выборочное среднее: ' + str(sampleMean))
+print(f'(2) Выборочное среднее: {sampleMean}')
 
 sampleVariance = (reduce(lambda acc, val: acc + val**2, sample))/size - sampleMean**2 # Выборочная дисперсия
 
 standardDeviation = sqrt(sampleVariance)# (3) Cреднеквадратичное отклонение 
-print('(3) Cреднеквадратичное отклонение: ' + str(standardDeviation))
+print(f'(3) Cреднеквадратичное отклонение: {standardDeviation}')
 
 eps = 3*sqrt(sampleVariance) / sqrt(size) # (4) 99%-доверительный интервал для мат. ожидания
-print('(4) 99%-доверительный интервал для мат. ожидания: ' + str(eps))
+print(f'(4) 99%-доверительный интервал для мат. ожидания: ({-eps} ; {eps})')
 
 
 # 5 пункт пока хз как делать
 
-
-input("Press F to end...\n")
+k = [2, 2.2, 2.5, 2.9, 3.5, 3.6, 4, 5, 5.2, 5.4, 5.5, 5.7, 6] #разбили отрезок на 12 частей

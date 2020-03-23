@@ -1,5 +1,6 @@
 from functools import reduce # reduce() Применяет указанную функцию к элементам последовательности, сводя её к единственному значению.
 from math import sqrt, pi
+from collections import Counter
 
 def readFromFile(filename):
     with open(filename, 'r') as f:
@@ -29,8 +30,19 @@ k = [2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 5.6] #разбили 
 
 # Выдвинем гипотезу H0: распределение генеральной совокупности X подчинено нормальному 
 # закону с параметрами a = 4.004820069204156 и σ = 0.5664344483986975 .
+
+#Сортируем выборку чтобы найти повторяющиеся значения
 sortedSample = sorted(sample)
+
+# сортированный список в файл
 sorted_f = open('sortedInput32.txt', 'w')
 for item in sortedSample:
     sorted_f.write("%s\n" % item)
 sorted_f.close()
+
+# Создаем словарь (значение):(количество повторений)
+dictDoubles = Counter(sortedSample) 
+# Записываем словарь в файл
+with open('doublesInput32.txt','w') as out:
+    for key,val in dictDoubles.items():
+        out.write('{}:{}\n'.format(key,val))

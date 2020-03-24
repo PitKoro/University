@@ -12,6 +12,7 @@ sample = readFromFile('input32.txt')
 print(f'min: {min(sample)}\nmax: {max(sample)}')
 size = len(sample) # (1) Объем выборки
 print(f'(1) Объем выборки: {size}')
+
 sampleMean = sum(sample)/size # (2) Выборочное среднее
 print(f'(2) Выборочное среднее: {sampleMean}')
 
@@ -20,63 +21,65 @@ sampleVariance = (reduce(lambda acc, val: acc + val**2, sample))/size - sampleMe
 standardDeviation = sqrt(sampleVariance)# (3) Cреднеквадратичное отклонение 
 print(f'(3) Cреднеквадратичное отклонение: {standardDeviation}')
 
-eps = 3*sqrt(sampleVariance) / sqrt(size) # (4) 99%-доверительный интервал для мат. ожидания
-print(f'(4) 99%-доверительный интервал для мат. ожидания: ({-eps} ; {eps})')
+eps = 2.58 *sqrt(sampleVariance) / sqrt(size) # (4) 99%-доверительный интервал для мат. ожидания
+print(f'(4) 99%-доверительный интервал для мат. ожидания: ({-eps+sampleMean} ; {eps+sampleMean})')
 
 
 # По критерию хи квадрат проверить гипотезу что распределение нормальное
 # https://www.matburo.ru/Examples/Files/ms_pg_3.pdf
 
-h = (max(sample) - min(sample))/12 #разбили отрезок на 12 частей, получили шаг 0.264725
-
-
-fi = 0.062
-ni = 11 * 0.2*fi/0.498
-print(ni) 
+k = [2.3, 2.575, 2.85, 3.125, 3.4, 3.675, 3.95, 4.225, 4.5, 4.775, 5.05, 5.325, 5.6 ] # Разбили на 12 частей, шаг 0.275
+print(f'Отрезки: {k}')
+h = 0.275
 # Выдвинем гипотезу H0: распределение генеральной совокупности X подчинено нормальному 
 # закону с параметрами a = 4.004820069204156 и σ = 0.5664344483986975 .
 
-#Сортируем выборку чтобы найти повторяющиеся значения
-sortedSample = sorted(sample)
+n_k = [0 for i in range(len(k) - 1)] #Количество вхождений в интервале
 
-# сортированный список в файл
-sorted_f = open('sortedInput32.txt', 'w')
-for item in sortedSample:
-    sorted_f.write("%s\n" % item)
-sorted_f.close()
 
-# Создаем словарь (значение):(количество повторений)
-dictDoubles = Counter(sortedSample) 
-# Записываем словарь в файл
-with open('doublesInput32.txt','w') as out:
-    for key,val in dictDoubles.items():
-        out.write('{}:{}\n'.format(key,val))
+for item in sample:
+    for i in range(1, len(k)):
+        if item <= k[i]:
+            n_k[i-1]+=1
+            break
 
-# Расчитываем теоритические частоты
-dictKeys = dictDoubles.keys()
-dictValues = dictDoubles.values()
+print(f'Количесво вхождений: {n_k}')
+probabilities = []
+for num in n_k:
+    p_tmp = num/size
+    probabilities.append(p_tmp)
+print(f'Вероятности: {probabilities}')
+# Расчитываем теоритические частоты##########################################################################3###
+tmp = 0
+for index in range(0, len(k)-1):
+    tmp += k[index] * n_k[index] 
+sampleMean = tmp/size
 
 ui = []
-for key in dictDoubles:
-    tmp = (float(key) - sampleMean)/standardDeviation
+tmp = 0
+for i in range(0, len(k)-1):
+    tmp = (k[i] - sampleMean)/standardDeviation
     ui.append(tmp)
 
+
 fi=[] # список ϕ(ui)
-for item in ui:
-    tmp = (1/(sqrt(2*pi)))*(e ** (-(item**2)/2))
+tmp = 0
+for i in range(0, len(k)-1):
+    tmp = (1/(sqrt(2*pi)))*(e ** (-(ui[i]**2)/2))
     fi.append(tmp)
 
+
 theoretical_frequencies = []
+tmp = 0
 for item in fi:
     tmp = size*h*item/standardDeviation
     theoretical_frequencies.append(tmp)
 
 # Далее вычисляем Наблюдаемое значение критерия
-index = 0
-K = 0 # Значение Критерия
-for val in dictDoubles.values():
-    tmp = ((float(val) - float(theoretical_frequencies[index]))**2)/float(theoretical_frequencies[index])
-    K += tmp
-    index += 1
-
-print(f'Критерий: {K}')
+chiSquared = 0
+for theoretical_frequencies, num  in zip(theoretical_frequencies, n_k):
+    chiSquared += ((num - theoretical_frequencies)**2) / theoretical_frequencies
+chiSquaredThreshold = 15.5
+print(f'(5) Значение Хи-квадрат Пирсона: {chiSquared} => '
+    'Гипотеза принята' if chiSquared < chiSquaredThreshold else 'Гипотеза отклонена'
+)

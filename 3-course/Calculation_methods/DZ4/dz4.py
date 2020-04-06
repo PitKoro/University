@@ -1,16 +1,26 @@
 # импортируем модули
-from math import  sin, cos, pi, exp
+from math import  fsum, sin, cos, pi
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate
+
 
 def f(x):
     if x == 0:
         return 1.0
     return (x-sin(x))/x**3
 
-def S(x):
-    return 0
+def LagrangePolynomial(x, xNodes, yNodes):
+    def basicPolynomials(i):
+        if i == 0:
+            return ((x - xNodes[1])/(xNodes[0]-xNodes[1]))*((x - xNodes[2])/(xNodes[0]-xNodes[2]))
+        elif i == 1:
+            return ((x - xNodes[0])/(xNodes[1]-xNodes[0]))*((x - xNodes[2])/(xNodes[1]-xNodes[2]))
+        elif i == 2:
+            return ((x - xNodes[0])/(xNodes[2]-xNodes[0]))*((x - xNodes[1])/(xNodes[2]-xNodes[1]))
+    
+    LagrangePolynomial = [yNodes[i]*basicPolynomials(i) for i in range(0,3)]    
+    return fsum(LagrangePolynomial)
 
 #------------------------------------------------------Вычисление интеграла-------------------------------------------------
 #https://www.youtube.com/watch?v=Ydt6JMVjf1g
@@ -33,10 +43,11 @@ yNodes = [f(x) for x in xNodes]
 
 #-----------------------------------------------------Рисуем график f(x)----------------------------------------------------
 #http://itrobo.ru/programmirovanie/python/grafiki-funkcii-i-poverhnostei-v-python-.html
-x = np.linspace(-10, 10,1000) # создаём область, в которой будет отображаться график
+x = np.linspace(-5, 5,1000) # создаём область, в которой будет отображаться график
 f_y = [f(x) for x in x]
+S_y = [LagrangePolynomial(x, xNodes, yNodes) for x in x]
 plt.plot(x, f_y, label='f')
-plt.plot(x, f_y, label='S')
+plt.plot(x, S_y, label='S')
 plt.legend()
 plt.show()
 #---------------------------------------------------------------------------------------------------------------------------

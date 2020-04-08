@@ -27,6 +27,9 @@ def LagrangePolynomial(x, xNodes, yNodes):
 l = integrate.quad(f, 0, pi)
 Integral = l[0] + l[1]
 print(Integral)
+print(
+    f'Интеграл от f на [0, pi] = {Integral}'
+)
 #---------------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------Ищем узлы Чебышева-------------------------------------------------
@@ -43,7 +46,7 @@ yNodes = [f(x) for x in xNodes]
 
 #-----------------------------------------------------Рисуем график f(x)----------------------------------------------------
 #http://itrobo.ru/programmirovanie/python/grafiki-funkcii-i-poverhnostei-v-python-.html
-x = np.linspace(-5, 5,1000) # создаём область, в которой будет отображаться график
+x = np.linspace(-0.00001, pi) # создаём область, в которой будет отображаться график
 f_y = [f(x) for x in x]
 S_y = [LagrangePolynomial(x, xNodes, yNodes) for x in x]
 plt.plot(x, f_y, label='f')

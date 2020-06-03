@@ -102,7 +102,7 @@ public:
 		e = eps;
 	}
 
-	//этот конструктор используется, если надо выгрузить матрицу непосредственно из файла
+	//СЌС‚РѕС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ, РµСЃР»Рё РЅР°РґРѕ РІС‹РіСЂСѓР·РёС‚СЊ РјР°С‚СЂРёС†Сѓ РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ РёР· С„Р°Р№Р»Р°
 	Matr(char* file, double eps){
 
 		ifstream in(file);
@@ -144,7 +144,7 @@ public:
 
 	double show(int i, int j) { return A[i][j]; };
 
-	//эта функция вызывается только для файла из лабы
+	//СЌС‚Р° С„СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ С„Р°Р№Р»Р° РёР· Р»Р°Р±С‹
 	void MakeMatr(const char* file)
 	{
 		ifstream in(file);
@@ -254,11 +254,11 @@ public:
 			cout << endl << "maxErr = " << maxErr;
 			counter++;
 		} while (maxErr > per);
-		cout << endl << "Количество итераций: " << counter << endl;
+		cout << endl << "РљРѕР»РёС‡РµСЃС‚РІРѕ РёС‚РµСЂР°С†РёР№: " << counter << endl;
 		for (int i = 0; i < size; i++)
 			cout << "x" << i + 1 << "=" << x[i] << " " << endl;
 
-		//проверка найденного ответа
+		//РїСЂРѕРІРµСЂРєР° РЅР°Р№РґРµРЅРЅРѕРіРѕ РѕС‚РІРµС‚Р°
 		double answer = 0, max = 0;
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
@@ -271,7 +271,7 @@ public:
 			}
 			answer = 0;
 		}
-		cout << "Точность: " << max << endl;
+		cout << "РўРѕС‡РЅРѕСЃС‚СЊ: " << max << endl;
 
 		//delete[] x;
 		delete[] x0;
@@ -286,19 +286,19 @@ int main()
 		setlocale(LC_ALL, "rus");
 		int n;
 		double e;
-		cout << "Введите количество уравнений:   ";
+		cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓСЂР°РІРЅРµРЅРёР№:   ";
 		cin >> n;
-		cout << "Введите необходимую точность:  ";
+		cout << "Р’РІРµРґРёС‚Рµ РЅРµРѕР±С…РѕРґРёРјСѓСЋ С‚РѕС‡РЅРѕСЃС‚СЊ:  ";
 		cin >> e;
 
 		Matr a(n, e);
 		toFile("MatrixVector.txt", n);
 		a.MakeMatr("MatrixVector.txt");
 
-		cout << endl << "Расширенная матрица:" << endl;
+		cout << endl << "Р Р°СЃС€РёСЂРµРЅРЅР°СЏ РјР°С‚СЂРёС†Р°:" << endl;
 		a.Print();
 		a.Preob();
-		cout << endl << "Преображенная матрица" << endl;
+		cout << endl << "РџСЂРµРѕР±СЂР°Р¶РµРЅРЅР°СЏ РјР°С‚СЂРёС†Р°" << endl;
 		a.Print();
 		cout << endl;
 		double *x = a.Itera();

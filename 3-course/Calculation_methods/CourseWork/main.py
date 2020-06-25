@@ -1,4 +1,4 @@
-from math import sin, cos, sqrt, pi
+from math import sin, cos, sqrt
 from functools import reduce
 
 from matplotlib import pyplot as plt
@@ -48,8 +48,6 @@ for a in A:
         fi1 = solution(f, n)
         fi2 = solution(f, 2*n)
         ok = True
-
-        alpha = abs(fi1[-1][1] - fi2[-1][1])/3
 
         for i in range (n, -1, -1):
             err = abs(fi1[i][1] - fi2[2*i][1])/3
